@@ -21,23 +21,19 @@ app.use(function (req, res, next) {
     next()
 });
 
-app.get("https://webstorehero.herokuapp.com/collection/Lessons", (req, res, next) => {
-    console.log("root pass");
-    res.send('Welcome to the MongoDB Express server.')
-})
-
-app.param('collectionName', (req, res, next, collectionName) => {
-    req.collection = db.collection(collectionName)
-    // console.log('collection name:', req.collection)
-    return next()
-});
-
 app.get('/collection/:collectionName', (req, res) => {
     req.collection.find({}).toArray((e, results) => {
         if (e) return next(e)
         res.send(results)
     })
 });
+app.param('collectionName', (req, res, next, collectionName) => {
+    req.collection = db.collection(collectionName)
+    // console.log('collection name:', req.collection)
+    return next()
+})
+
+
 
 const port = process.env.PORT || 3000
 app.listen(port)
