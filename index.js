@@ -37,7 +37,7 @@ app.get('/collection/:collectionName', (req, res) => {
         if (e) return next(e)
         res.send(results)
     })
-})
+});
 
 const port = process.env.PORT || 3000
 app.listen(port)
