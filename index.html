@@ -18,12 +18,10 @@
             </span><br>
             <img v-bind:src="lesson.Image" alt="" width="100px" height="100px">
             <br>
-            Subject: {{ lesson.Subject }} <br>
-            Location: {{ lesson.Location }} <br>
-            Price: £{{ lesson.Price }} <br>
-            Spaces: {{ lesson.Spaces }} <br>
-            <span v-for="n in lesson.Rating" class="fas fa-star"></span>
-            <span v-for="n in 5-lesson.Rating" class="far fa-star"></span> <br><br>
+            Subject: {{ lesson.topic}} <br>
+            Location: {{ lesson.location }} <br>
+            Price: {{ lesson.price }} <br>
+            Spaces: {{ lesson.space }} <br>
             <br>
         </div>
     </div>
