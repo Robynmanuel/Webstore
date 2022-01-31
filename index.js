@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 
 app.get("/", (req, res, next) => {
     console.log("root pass");
-    res.send('Welcome to the MongoDB Express server.')
+    res.fetch('https://webstorehero.herokuapp.com/collection/Lessons')
 })
 
 app.param('collectionName', (req, res, next, collectionName) => {
