@@ -15,26 +15,29 @@ mongoClient.connect('mongodb+srv://RobyndbUser:Robynmanuel7@cluster1.oegin.mongo
         db = client.db('Webstore')
     })
 
-
-
-app.get('/collection/:collectionName', (req, res, next) => {
-    req.collection.find({}).toArray((e, results) => {
-        if (e) return next(e)
-        res.send(results)
-        next()
-    })
+app.use(function (req, res, next) {
+    console.log("Request IP: " + req.url);
+    console.log("Request date: " + new Date());
+    next()
 });
+
+app.get("/", (req, res, next) => {
+    console.log("root pass");
+    res.send('Welcome to the MongoDB Express server.')
+})
 
 app.param('collectionName', (req, res, next, collectionName) => {
     req.collection = db.collection(collectionName)
     // console.log('collection name:', req.collection)
-    next()
+    return next()
 })
 
-app.use(function (req, res) {
-    console.log("Request IP: " + req.url);
-    console.log("Request date: " + new Date());
-});
+app.get('/collection/:collectionName', (req, res) => {
+    req.collection.find({}).toArray((e, results) => {
+        if (e) return next(e)
+        res.send(results)
+    })
+})
 
 const port = process.env.PORT || 3000
 app.listen(port)
