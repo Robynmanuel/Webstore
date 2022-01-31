@@ -31,10 +31,9 @@ app.param('collectionName', (req, res, next, collectionName) => {
     next()
 })
 
-app.use(function (req, res, next) {
+app.use(function (req, res) {
     console.log("Request IP: " + req.url);
     console.log("Request date: " + new Date());
-    next()
 });
 
 const port = process.env.PORT || 3000
