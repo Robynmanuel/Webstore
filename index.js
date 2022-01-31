@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
     next()
 });
 
-app.get("/https://webstorehero.herokuapp.com/collection/Lessons", (req, res, next) => {
+app.get("https://webstorehero.herokuapp.com/collection/Lessons", (req, res, next) => {
     console.log("root pass");
     res.send('Welcome to the MongoDB Express server.')
 })
