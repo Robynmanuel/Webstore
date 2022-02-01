@@ -7,34 +7,134 @@
         <!-- Load the Vue.js as a JavaScript library -->
         <script src="https://unpkg.com/vue"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="index.css">
     </head>
 
 <body>
-    <p id='response'></p>
     <div id="app">
-
+        <header id="hd">
+            <h1>{{Sitename}}</h1>          
+        </header>
+      
+        <div id="fr">           
+            <div id="kh">
+                <button id="ck" v-if="checked()" v-on:click="showCheckout"> 
+                {{ cartItemCount}} in<span class="fas fa-cart-plus"></span> 
+                Cart</button> 
+                <button disabled="disabled" 
+                v-else id="hk"><span class="fas fa-cart-plus"></span>
+                Cart</button>
+                </div>
+           </div>
+           <div v-if='showLesson'>
         <div v-for="lesson in lessons" class="lessonlist">
-            </span><br>
-            <img v-bind:src="lesson.Image" alt="" width="100px" height="100px">
-            <br>
-            Subject: {{ lesson.topic}} <br>
-            Location: {{ lesson.location }} <br>
-            Price: {{ lesson.price }} <br>
-            Spaces: {{ lesson.space }} <br>
-            <br>
-        </div>
-    </div>
+            <img v-bind:src="lesson.Image" alt="" id="im" width="100px" height="100px">
+        
+            <div id="sub">
+                <h2>Subject: {{ lesson.topic}} </h2>
+                <em>Location: {{ lesson.location }}</em><br><br>
+                <em>Price: {{ lesson.price }} </em>
+                <em><h3>Spaces: {{ lesson.space }} </h3></em>
+                <button id="adc" v-on:click='addToCart'
+                >Add To Cart</button>
+                </div><br><br><br>
+</div>
+</div>
+
+<div v-else>
+    <h1> Cart List</h1>
+    <p><h2>{{cartItemCount}} items added to the cart</h2></p>
+    <button class="open-button" onclick="openForm()">Check out</button>
+    <div class="form-popup" id="myForm">
+       <form class="form-container">
+     
+         <label for="name"><b>Name</b></label>
+         <input id="fname" v-model="input1"type="text" placeholder="Enter Name" name="name" >
+     
+         <label for="email"><b>Email</b></label>
+         <input id="email" v-model="input2" type="text" placeholder="Enter Email" name="email" >
+
+         <label for="ph"><b>Phone</b></label>
+         <input id="phone" v-model="input3" type="tel" placeholder="Enter Phone" name="ph" >
+     
+         <div>
+           <button type="submit" class="btn" v-on:click='valid' v-if="val">Check out</button>
+           <button disabled="disabled" class="btn cancel"
+           v-else>Check out</button>
+         </div>
+         
+         <button type="button" class="btn cancel" onclick="closeForm()">Back</button>
+       </form>
+     </div>
+</div>
+
+</div>
+
+   
     <script>
         let app = new Vue({
             el: '#app',
             data: {
-                lessons: ''
+                lessons: '',
+                Sitename: 'After School Lessons',
+                cart: [],
+                showLesson: true, 
+                input1: '',
+                input2: '',
+                input3: '',
             },
             mounted:function(){
                 this.displayData() //this method will execute at pageload
             },
+
             methods: {
+                addToCart(){
+           this.cart.push(this.lessons.id);
+        },
+
+        showCheckout() {
+            this.showLesson = this.showLesson ? false : true;
+        },
+ 
+        checked(){
+            if(this.cartItemCount > 0 ){
+            return true;
+            }else{
+
+                  return false;
+                  }
+        },
+
+        valid() {
+            var fname = document.getElementById('fname').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+        
+            var nameRGEX = /^[A-Za-z]+[\s][A-Za-z]+$/;
+            var emailRGEX = /^[\w @\w\.com\s]+$/;
+            var phoneRGEX = /^[0-9]{1,3}[\s][0-9]{3}[\s][0-9]{3}[\s][0-9]{4,6}$/;
+        
+            var nameRes = nameRGEX.test(fname);
+            var emailRes = emailRGEX.test(email);
+            var phoneRes = phoneRGEX.test(phone);
+            
+            if(nameRes == false) {
+                alert('Please enter a valid name');
+                return false;
+            }
+            if(emailRes == false) {
+                alert('Please enter a valid email');
+                return false;
+            }
+            if(phoneRes == false) {
+                alert('Please enter a valid Phone number');
+                return false;
+            }else{
+                alert('Your order has been confirmed');
+            }
+            return true;
+          },
+          
                 displayData() {
                     fetch('https://webstorehero.herokuapp.com/collection/Lessons').then(
                         function (response) {
@@ -46,8 +146,30 @@
                         }
                     )
                 },
+            },
+
+            computed: {
+                cartItemCount() {
+                return this.cart.length || '';
+         },
+
+         val(){
+            if(this.input1 != '' && this.input2 != '' && this.input3 != ''){
+            return true;
+            }else{
+                      return false;
+                  }
+                },
             }
+
         })
+        function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
     </script>
 </body>
 
