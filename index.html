@@ -26,10 +26,13 @@
                 Cart</button>
                 </div>
            </div>
+          
+          
            <div v-if='showLesson'>
+            <div v-for="im in images" class="lessonlist">
+                <img v-bind:src="im.Image" alt="" width="100px" height="100px">
+               </div>
         <div v-for="lesson in lessons" class="lessonlist">
-            <img v-bind:src="lesson.Image" alt="" id="im" width="100px" height="100px">
-        
             <div id="sub">
                 <h2>Subject: {{ lesson.topic}} </h2>
                 <em>Location: {{ lesson.location }}</em><br><br>
@@ -41,24 +44,24 @@
 </div>
 </div>
 
+
+
 <div v-else>
+    <div class="chr"> 
     <h1> Cart List</h1>
     <p><h2>{{cartItemCount}} items added to the cart</h2></p>
+    </div>
     <button class="open-button" onclick="openForm()">Check out</button>
     <div class="form-popup" id="myForm">
-       <form class="form-container">
+       <form action="/collection/Orders" method="POST" class="form-container" >
      
          <label for="name"><b>Name</b></label>
          <input id="fname" v-model="input1"type="text" placeholder="Enter Name" name="name" >
      
-         <label for="email"><b>Email</b></label>
-         <input id="email" v-model="input2" type="text" placeholder="Enter Email" name="email" >
-
          <label for="ph"><b>Phone</b></label>
          <input id="phone" v-model="input3" type="tel" placeholder="Enter Phone" name="ph" >
-     
          <div>
-           <button type="submit" class="btn" v-on:click='valid' v-if="val">Check out</button>
+           <button type="submit" class="btn" v-if="val">Check out</button>
            <button disabled="disabled" class="btn cancel"
            v-else>Check out</button>
          </div>
@@ -76,6 +79,7 @@
             el: '#app',
             data: {
                 lessons: '',
+                images: '',
                 Sitename: 'After School Lessons',
                 cart: [],
                 showLesson: true, 
@@ -144,8 +148,20 @@
                                 }
                             )
                         }
+                    ),
+
+                    fetch('http://localhost:3000/Images').then(
+                        function (response) {
+                            response.json().then(
+                                function (json) {
+                                    app.images = json
+                                }
+                            )
+                        }
                     )
                 },
+
+               
             },
 
             computed: {
@@ -154,7 +170,7 @@
          },
 
          val(){
-            if(this.input1 != '' && this.input2 != '' && this.input3 != ''){
+            if(this.input1 != '' && this.input3 != ''){
             return true;
             }else{
                       return false;

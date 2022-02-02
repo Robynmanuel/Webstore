@@ -240,8 +240,8 @@ body::-webkit-scrollbar {
     cursor: pointer;
     opacity: 0.8;
     position: fixed;
-    bottom: 40%;
-    right: 51%;
+    bottom: 50%;
+    right: 75%;
     width: 280px;
   }
   
@@ -251,8 +251,8 @@ body::-webkit-scrollbar {
     background-color: white;
     position: fixed;
     height: 400px;
-    bottom: 2%;
-    right: 48%;
+    bottom: 20%;
+    right: 72%;
     border: 3px solid #f1f1f1;
     z-index: 9;
   }
@@ -316,4 +316,8 @@ body::-webkit-scrollbar {
     background-color: gray;
     color: white;
     border: none;
+}
+
+.chr{
+    margin-left: 5%;
 }
