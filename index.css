@@ -34,6 +34,25 @@ body::-webkit-scrollbar {
     margin-top: 20px;
 }
 
+
+.lessonlist1 {
+    display: inline-block;
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+#real{
+    display: flex;
+}
+
+#real1{
+    flex-grow: 1;
+    margin: right;
+}
+
+#real2{
+    flex-grow: 1;
+}
 #app{
     margin-left: -2%;
     padding-top: 10%;

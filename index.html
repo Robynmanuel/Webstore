@@ -29,9 +29,13 @@
           
           
            <div v-if='showLesson'>
-            <div v-for="im in images" class="lessonlist">
+               <div  id="real">
+                   <div id="real1">
+            <div v-for="im in images" class="lessonlist1">
                 <img v-bind:src="im.Image" alt="" width="100px" height="100px">
                </div>
+            </div>
+            <div id="real2">
         <div v-for="lesson in lessons" class="lessonlist">
             <div id="sub">
                 <h2>Subject: {{ lesson.topic}} </h2>
@@ -41,9 +45,10 @@
                 <button id="adc" v-on:click='addToCart'
                 >Add To Cart</button>
                 </div><br><br><br>
+            </div>
 </div>
 </div>
-
+</div>
 
 
 <div v-else>

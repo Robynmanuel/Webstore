@@ -10,7 +10,6 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const mongoClient = require("mongodb").MongoClient
-const res = require('express/lib/response')
 
 let db;
 mongoClient.connect('mongodb+srv://RobyndbUser:Robynmanuel7@cluster1.oegin.mongodb.net'
@@ -60,8 +59,6 @@ app.param('collectionName', (req, res, next, collectionName) => {
     // console.log('collection name:', req.collection)
     return next()
 })
-
-
 
 const port = process.env.PORT || 3000
 app.listen(port)
