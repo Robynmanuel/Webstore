@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>Fetch Lessons</title>
         <!-- Load the Vue.js as a JavaScript library -->
-        <script src="https://unpkg.com/vue"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <link rel="stylesheet" href="index.css">
     </head>
@@ -58,17 +58,22 @@
     </div>
     <button class="open-button" onclick="openForm()">Check out</button>
     <div class="form-popup" id="myForm">
-       <form action="/collection/Orders" method="POST" class="form-container" >
+       <form action="/Orders" method="POST" class="form-container" >
      
          <label for="name"><b>Name</b></label>
-         <input id="fname" v-model="input1"type="text" placeholder="Enter Name" name="name" >
+         <input id="fname" type="text" placeholder="Enter Name" name="name" >
      
          <label for="ph"><b>Phone</b></label>
-         <input id="phone" v-model="input3" type="tel" placeholder="Enter Phone" name="ph" >
+         <input id="phone" type="tel" placeholder="Enter Phone" name="phone number" >
+
+         <label for="name"><b>Lesson ID</b></label>
+         <input id="fname" type="text" placeholder="Enter Lesson ID" name="lesson ID" >
+
+         <label for="name"><b>Number of space</b></label>
+         <input id="fname" type="text" placeholder="Enter Name" name="number of space" >
          <div>
-           <button type="submit" class="btn" v-if="val">Check out</button>
-           <button disabled="disabled" class="btn cancel"
-           v-else>Check out</button>
+           <button type="submit" class="btn">Check out</button>
+           
          </div>
          
          <button type="button" class="btn cancel" onclick="closeForm()">Back</button>
