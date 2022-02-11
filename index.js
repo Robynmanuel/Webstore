@@ -12,11 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const mongoClient = require("mongodb").MongoClient
 
-let db, Orders;
+let db, users;
 mongoClient.connect('mongodb+srv://RobyndbUser:Robynmanuel7@cluster1.oegin.mongodb.net'
     , (err, client) => {
         db = client.db('Webstore')
-        users = db.collection("Orders")
+        users = db.collection('Orders')
     })
 
 app.param('collectionName', (req, res, next, collectionName) => {
@@ -58,14 +58,13 @@ app.get("/", (req, res, next) => {
     next()
 })
 
-app.post("/Orders", (req, res) => {
-    users.insert(req.body, (error, result) => {
-        if(error) {
-            return res.status(500).send(error);
-        }
-        res.send(result.result);
-    });
-  });
+app.post('/orders', (req, res) => {
+    users.insertOne(req.body)
+      .then(result => {
+        res.redirect('/')
+      })
+      .catch(error => console.error(error))
+  })
 
 
 const port = process.env.PORT || 3000
