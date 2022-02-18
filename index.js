@@ -46,7 +46,8 @@ app.get('/Images',function(request,response,next){
     var filePath = path.join(__dirname,"static", 'stat.txt')
     fs.stat(filePath,function(err,fileInfo){
         if(err){
-             console.error("file not found")
+             return res.status(404)
+             next()
         }
         else if(fileInfo.isFile()) response.sendFile(filePath)
        
