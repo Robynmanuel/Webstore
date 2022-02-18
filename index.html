@@ -32,13 +32,13 @@
                <div  id="real">
                    <div id="real1">
             <div v-for="im in images" class="lessonlist1">
-                <img v-bind:src="im.Image" alt="" width="100px" height="100px">
+                <img v-bind:src="im.Image" alt="" width="60px" height="60px">
                </div>
             </div>
             <div id="real2">
         <div v-for="lesson in lessons" class="lessonlist">
             <div id="sub">
-                <h2>Subject: {{ lesson.topic}} </h2>
+                <h3>Subject: {{ lesson.topic}} </h3>
                 <em>Location: {{ lesson.location }}</em><br><br>
                 <em>Price: {{ lesson.price }} </em>
                 <em><h3>Spaces: {{ lesson.space }} </h3></em>

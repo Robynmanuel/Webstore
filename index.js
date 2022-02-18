@@ -3,6 +3,7 @@ const path = require('path')
 const bodyParser= require('body-parser')
 const fs = require('fs')
 const cors = require('cors')
+const res = require('express/lib/response')
 
 let app = express()
 
@@ -45,8 +46,7 @@ app.get('/Images',function(request,response,next){
     var filePath = path.join(__dirname,"static", 'stat.txt')
     fs.stat(filePath,function(err,fileInfo){
         if(err){
-            next()
-            return 
+             console.error("file not found")
         }
         else if(fileInfo.isFile()) response.sendFile(filePath)
        

@@ -30,14 +30,15 @@ body::-webkit-scrollbar {
 
 .lessonlist {
     display: inline-block;
-    margin-left: 120px;
+    margin-left: 80px;
     margin-top: 20px;
 }
 
 
 .lessonlist1 {
     display: inline-block;
-    margin-left: 120px;
+    margin-left: 150px;
+    padding-top: 80px;
     margin-top: 20px;
 }
 
@@ -52,6 +53,7 @@ body::-webkit-scrollbar {
 
 #real2{
     flex-grow: 1;
+    position: fixed;
 }
 #app{
     margin-left: -2%;
