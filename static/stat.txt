@@ -1,14 +1,18 @@
 [
     { "Image":"photos/eng.png"},
     { "Image":"photos/math.png"},
-    { "Image":"photos/music.png"},
-    { "Image":"photos/art.png"},
     { "Image":"photos/bio.png"},
-    { "Image":"photos/chem.png"},
     { "Image":"photos/econ.png"},
     { "Image":"photos/geo.png"},
+    { "Image":"photos/physical.png"},
+    { "Image":"photos/music.png"},
+    { "Image":"photos/art.png"},
+   
+    { "Image":"photos/chem.png"},
+   
+   
     { "Image":"photos/lit.png"},
-    { "Image":"photos/physics.png"},
-    { "Image":"photos/physical.png"}
+    { "Image":"photos/physics.png"}
+    
    
 ]
