@@ -7,7 +7,6 @@
     { "Image":"photos/physical.png"},
     { "Image":"photos/music.png"},
     { "Image":"photos/chem.png"},
-    { "Image":"photos/lit.png"},
     { "Image":"photos/physics.png"},
     { "Image":"photos/art.png"}
    
