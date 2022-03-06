@@ -6,6 +6,7 @@
         <title>Fetch Lessons</title>
         <!-- Load the Vue.js as a JavaScript library -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="manifest" href="webstore.webmanifest">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <link rel="stylesheet" href="index.css">
     </head>
@@ -82,7 +83,19 @@
 </div>
 
 </div>
-
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js');
+    };
+    self.addEventListener('install', (e) => {
+        console.log('[Service Worker] Install');
+        e.waitUntil(
+            caches.open(cacheName).then((cache) => {
+                console.log('[Service Worker] Caching all the files');
+                return cache.addAll(cacheFiles);
+            }));
+    });
+</script>
    
     <script>
         let app = new Vue({

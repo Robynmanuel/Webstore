@@ -1,0 +1,16 @@
+{
+    "name": "My Webstore PWA",
+    "shortname": "webstore",
+    "description": "my onilne webstore",
+    "icons": [
+        {
+            "src": "photos/maths.png",
+            "sizes": "100x100",
+            "types": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#808080"
+
+}
