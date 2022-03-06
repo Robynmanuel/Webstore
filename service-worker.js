@@ -1,4 +1,4 @@
-var cacheName = 'webstorestore';
+var cacheName = 'webstore';
 self.addEventListener('fetch', function (e) {
   e.respondWith(
     caches.match(e.request).then(function (r) {
