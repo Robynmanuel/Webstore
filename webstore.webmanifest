@@ -4,8 +4,8 @@
     "description": "my onilne webstore",
     "icons": [
         {
-            "src": "photos/maths.png",
-            "sizes": "100x100",
+            "src": "photos/math.png",
+            "sizes": "512x512",
             "types": "image/png"
         }
     ],
